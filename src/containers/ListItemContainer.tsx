@@ -31,6 +31,20 @@ class ListItemContainer extends React.Component<Props, State> {
         this.onClickWishList = this.onClickWishList.bind(this);
     }
 
+    componentWillUpdate(prevProps: Props) {
+        if (!prevProps.course.wishListFlag && this.props.course.wishListFlag) {
+            this.setState({
+                removing: true
+            });
+
+            setTimeout(() => {
+                this.setState({
+                    removing: false
+                });
+            }, 5000);
+        }
+    }
+
     render() {
         return (
             <ListItemComponent course={this.props.course} onClickWishList={this.onClickWishList} removing={this.state.removing} />
