@@ -27,10 +27,11 @@ export const ListItemComponent: React.FC<Props> = props => {
         <>
             <Card className={classnames(styles.card, {[styles.removing]: props.removing})}>
                 <CardMedia
+                    className={styles.image}
                     image="http://placekitten.com/200/300"
                 />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="h5">
+                <CardContent className={styles.content}>
+                    <Typography gutterBottom variant="body1" component="p">
                         {props.course.courseName}
                     </Typography>
                 </CardContent>
