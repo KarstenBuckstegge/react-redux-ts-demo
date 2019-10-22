@@ -4,10 +4,11 @@ import classnames from 'classnames';
 import { Course } from '../../types';
 
 import Button from '@material-ui/core/Button';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import ListItemText from '@material-ui/core/ListItemText';
-import Avatar from '@material-ui/core/Avatar';
+import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import CardActions from '@material-ui/core/CardActions';
+import Typography from '@material-ui/core/Typography';
 import Snackbar from '@material-ui/core/Snackbar';
 import Favourite from '@material-ui/icons/Favorite';
 import FavouriteBorder from '@material-ui/icons/FavoriteBorder';
@@ -24,12 +25,17 @@ interface Props {
 export const ListItemComponent: React.FC<Props> = props => {
     return (
         <>
-            <ListItem className={classnames({[styles.removing]: props.removing})}>
-                <ListItemAvatar>
-                    <Avatar src="http://placekitten.com/200/300" />
-                </ListItemAvatar>
-                <ListItemText>{props.course.courseName}</ListItemText>
-                    <button type="button" onClick={props.onClickWishList}>
+            <Card className={classnames(styles.card, {[styles.removing]: props.removing})}>
+                <CardMedia
+                    image="http://placekitten.com/200/300"
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h5">
+                        {props.course.courseName}
+                    </Typography>
+                </CardContent>
+                <CardActions>
+                    <button className={styles.heart} type="button" onClick={props.onClickWishList}>
                     {props.course.wishListFlag ? (
                         <Favourite />
                     ) : (
@@ -38,7 +44,8 @@ export const ListItemComponent: React.FC<Props> = props => {
                         </>
                     )}
                 </button>
-            </ListItem>
+                </CardActions>
+            </Card>
             <Snackbar
                 anchorOrigin={{
                 vertical: 'bottom',
