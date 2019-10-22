@@ -1,7 +1,19 @@
 import * as React from 'react';
 
-import Button from '@material-ui/core/Button';
+import { ListItem } from '../../containers/ListItemContainer';
 
-export const ListComponent: React.FC<{}> = () => (
-    <Button color="primary">LIST</Button>
+import { Course } from '../../types';
+
+interface Props {
+    courseList: Course[]
+}
+
+export const ListComponent: React.FC<Props> = props => (
+    <ul>
+        {props.courseList.map(course => {
+            return (
+                <ListItem course={course} />
+            )
+        })}
+    </ul>
 );
