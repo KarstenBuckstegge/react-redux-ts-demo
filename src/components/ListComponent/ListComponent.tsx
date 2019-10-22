@@ -12,7 +12,7 @@ export const ListComponent: React.FC<Props> = props => (
     <ul>
         {props.courseList.map(course => {
             return (
-                <ListItem course={course} />
+                <ListItem course={course} key={course.courseId} />
             )
         })}
     </ul>

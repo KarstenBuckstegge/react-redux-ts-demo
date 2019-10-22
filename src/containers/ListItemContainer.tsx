@@ -29,6 +29,7 @@ class ListItemContainer extends React.Component<Props, State> {
         }
 
         this.onClickWishList = this.onClickWishList.bind(this);
+        this.onClickUndo = this.onClickUndo.bind(this);
     }
 
     componentWillUpdate(prevProps: Props) {
@@ -47,11 +48,18 @@ class ListItemContainer extends React.Component<Props, State> {
 
     render() {
         return (
-            <ListItemComponent course={this.props.course} onClickWishList={this.onClickWishList} removing={this.state.removing} />
+            <ListItemComponent course={this.props.course} onClickWishList={this.onClickWishList} onClickUndo={this.onClickUndo} removing={this.state.removing} />
         );
     }
 
     onClickWishList() {
+        this.props.toggleWishlist(this.props.course.courseId);
+    }
+
+    onClickUndo() {
+        this.setState({
+            removing: false
+        });
         this.props.toggleWishlist(this.props.course.courseId);
     }
 }
